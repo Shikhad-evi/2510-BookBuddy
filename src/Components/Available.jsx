@@ -1,8 +1,8 @@
 import React from "react";
 import { Grid, Stack, Typography } from "@mui/material";
-import Loading from "./Loading";
-import { useGetBooksQuery } from "../api/libraryApi";
-import BookCard from "./BookCard";
+import Loading from "../components/Loading";
+import { useGetBooksQuery } from "../Api/libraryApi";
+import BookCard from "../components/BookCard";
 
 const RenderAvailableBooks = ({ books }) => {
     const availableBooks = books.filter(book => book.available)
