@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
 import { Provider } from "react-redux";
-import { store } from "./app/stores.js";
+import { store } from "./app.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
 	<React.StrictMode>
@@ -11,4 +11,11 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 			<App />
 		</Provider>
 	</React.StrictMode>
-);
+); 
+
+/*import { createRoot } from "react-dom/client";
+import App from "./App.jsx";
+import "./App.css";
+
+createRoot(document.getElementById("root")).render(<App />);
+*/

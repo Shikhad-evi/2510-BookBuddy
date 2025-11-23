@@ -1,7 +1,7 @@
 import React from "react";
 import { Grid, Stack, Typography } from "@mui/material";
 import Loading from "./Loading";
-import { useGetBooksQuery } from "../../api/libraryApi";
+import { useGetBooksQuery } from "../api/libraryApi";
 import BookCard from "./BookCard";
 
 const RenderAvailableBooks = ({ books }) => {

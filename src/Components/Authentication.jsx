@@ -1,6 +1,6 @@
 import { Stack } from "@mui/material";
 import React from "react";
-import { SignIn, SignUp } from '.'
+import { SignIn, SignUp } from '../components'
 
 const Authenticate = () => {
     return (
