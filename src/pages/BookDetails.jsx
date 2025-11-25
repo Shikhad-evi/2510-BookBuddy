@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import { fetchBookById, reserveBook } from "../api";
-import { AuthContext } from "../context/AuthContext";
+import { AuthContext } from "../Context/AuthContext";
 
 export default function BookDetails() {
   const { id } = useParams();
