@@ -1,13 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { Books, Book, Authenticate, NavBar, Profile, SavedBooks, SignIn, SignUp, LogOut, AvailableBooks, ReservedBooks } from './components'
+import { Books, Book, Authenticate, NavBar, Profile, SavedBooks, SignIn, SignUp, LogOut, AvailableBooks, ReservedBooks } from './Components'
 
 function App() {
-  {/* Complete the React components needed to allow users to browse a library catalog, check out books, review their account, and return books that they've finished reading. */}
-  {/* You may need to use the `token` in this top-level component in other components that need to know if a user has logged in or not. */}
-  {/* Don't forget to set up React Router to navigate between the different views of your single page application! */}
+  
   return (
     <Router basename='block30_unit3_book_buddy_career_starter/'>
-      {/* Display the NavBar on all pages */}
+    
       <NavBar />
       <Routes>
         <Route index element={<Books />} />
