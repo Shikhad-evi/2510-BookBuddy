@@ -1,26 +1,23 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { Books, Book, Authenticate, NavBar, Profile, SavedBooks, SignIn, SignUp, LogOut, AvailableBooks, ReservedBooks } from './Components'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import NavBar from "./components/NavBar";
+import Books from "./pages/Books";
+import BookDetails from "./pages/BookDetails";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
+import Account from "./pages/Account";
 
-function App() {
-  
+export default function App() {
   return (
-    <Router basename='block30_unit3_book_buddy_career_starter/'>
-    
+    <Router>
       <NavBar />
       <Routes>
-        <Route index element={<Books />} />
-        <Route path="/:id" element={<Book />} />
-        <Route path="/auth" element={<Authenticate />} />
-        <Route path="/signin" element={<SignIn width={{ xs: "80%", md: "40%" }} />} />
-        <Route path="/signup" element={<SignUp width={{ xs: "80%", md: "40%" }} />} />
-        <Route path="/logout" element={<LogOut />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/savedbooks" element={<SavedBooks />} />
-        <Route path="/reservedbooks" element={<ReservedBooks />} />
-        <Route path="/availablebooks" element={<AvailableBooks />} />
+        <Route path="/" element={<Books />} />
+        <Route path="/books" element={<Books />} />
+        <Route path="/books/:id" element={<BookDetails />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/account" element={<Account />} />
       </Routes>
     </Router>
-  )
+  );
 }
-
-export default App
