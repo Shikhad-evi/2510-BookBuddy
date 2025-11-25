@@ -1,4 +1,4 @@
-const API_URL = "https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api";
+export const API_URL = "https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api";
 
 export const fetchBooks = async () => {
   const res = await fetch(`${API_URL}/books`);

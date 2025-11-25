@@ -3,12 +3,12 @@ import { fetchBooks } from "../api";
 import { Link } from "react-router-dom";
 
 export default function Books() {
-  const [books, setBooks] = useState([]);  // FIXED
+  const [books, setBooks] = useState([]);  
 
   useEffect(() => {
     fetchBooks().then((data) => {
-      console.log(data); // helpful debugging
-      setBooks(data.books || []); // prevents undefined errors
+      console.log(data); 
+      setBooks(data.books || []); 
     });
   }, []);
 
