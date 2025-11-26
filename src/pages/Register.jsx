@@ -1,39 +1,37 @@
-import { useState, useContext } from "react";
-import { registerUser } from "../api";
-import { AuthContext } from "../Context/AuthContext";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function Register() {
-  const { login } = useContext(AuthContext);
-  const nav = useNavigate();
-  const [form, setForm] = useState({ email: "", password: "", name: "" });
+const API_URL = "https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api";
 
-  const handleSubmit = async (e) => {
+export default function Register() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const navigate = useNavigate();
+
+  async function handleRegister(e) {
     e.preventDefault();
-    const res = await registerUser(form);
-    if (res?.token) {
-      login(res.token);
-      nav("/");
-    }
-  };
+
+    await fetch(`${API_URL}/users/register`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password, firstname, lastname })
+    });
+
+    navigate("/login");
+  }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Register</h2>
-      <input
-        placeholder="Name"
-        onChange={(e) => setForm({ ...form, name: e.target.value })}
-      />
-      <input
-        placeholder="Email"
-        onChange={(e) => setForm({ ...form, email: e.target.value })}
-      />
-      <input
-        placeholder="Password"
-        type="password"
-        onChange={(e) => setForm({ ...form, password: e.target.value })}
-      />
-      <button>Register</button>
-    </form>
+    <div style={{ padding: "20px" }}>
+      <h1>Register</h1>
+      <form onSubmit={handleRegister}>
+        <input placeholder="First Name" onChange={(e) => setFirstname(e.target.value)} /><br />
+        <input placeholder="Last Name" onChange={(e) => setLastname(e.target.value)} /><br />
+        <input placeholder="Email" onChange={(e) => setEmail(e.target.value)} /><br />
+        <input placeholder="Password" type="password" onChange={(e) => setPassword(e.target.value)} /><br />
+        <button>Register</button>
+      </form>
+    </div>
   );
 }

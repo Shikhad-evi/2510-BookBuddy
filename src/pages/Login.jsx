@@ -1,37 +1,35 @@
-import { useState, useContext } from "react";
-import { loginUser } from "../api";
-import { AuthContext } from "../Context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+
+const API_URL = "https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api";
 
 export default function Login() {
-  const { login } = useContext(AuthContext);
-  const nav = useNavigate();
-  const [form, setForm] = useState({ email: "", password: "" });
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  async function handleLogin(e) {
     e.preventDefault();
-    const res = await loginUser(form);
-    if (res?.token) {
-      login(res.token);
-      nav("/");
-    } else {
-      alert("Login failed.");
-    }
-  };
+    const res = await fetch(`${API_URL}/users/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password })
+    });
+    const data = await res.json();
+
+    localStorage.setItem("token", data.token);
+    navigate("/account");
+  }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Login</h2>
-      <input
-        placeholder="Email"
-        onChange={(e) => setForm({ ...form, email: e.target.value })}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        onChange={(e) => setForm({ ...form, password: e.target.value })}
-      />
-      <button>Login</button>
-    </form>
+    <div style={{ padding: "20px" }}>
+      <h1>Login</h1>
+      <form onSubmit={handleLogin}>
+        <input placeholder="Email" onChange={(e) => setEmail(e.target.value)} /><br />
+        <input placeholder="Password" type="password" onChange={(e) => setPassword(e.target.value)} /><br />
+        <button>Login</button>
+      </form>
+      <Link to="/register">No account? Register</Link>
+    </div>
   );
 }
